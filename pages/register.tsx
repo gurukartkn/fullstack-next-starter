@@ -5,7 +5,7 @@ import { Navbar } from '../components/Register/Navbar';
 
 const Register: NextPage = () => {
   return (
-    <div className="bg-violet-100">
+    <div className="bg-violet-100 min-h-screen">
       <Head>
         <title>Register</title>
       </Head>

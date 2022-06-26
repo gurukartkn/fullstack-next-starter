@@ -28,7 +28,7 @@ export const LoginForm: NextComponentType = () => {
                 type="submit"
                 className="w-full text-center py-3 rounded font-semibold bg-violet-500 text-white hover:bg-violet-700 focus:outline-none my-1"
               >
-                Sign Up
+                Login
               </button>
               <div className="text-grey-dark mt-6">
                 <Link href="/register">
