@@ -17,8 +17,6 @@ const Register: NextPage = () => {
         <title>Register</title>
       </Head>
 
-      <div>{JSON.stringify(data?.test)}</div>
-
       <Navbar />
       <RegisterForm />
     </div>
