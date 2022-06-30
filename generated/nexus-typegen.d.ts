@@ -14,6 +14,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  loginCredentials: { // input type
+    email: string; // String!
+    password: string; // String!
+  }
   registerCredentials: { // input type
     email: string; // String!
     firstName: string; // String!
@@ -34,6 +38,12 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  LoginResponse: { // root type
+    email?: string | null; // String
+    error: boolean; // Boolean!
+    message?: string | null; // String
+    username?: string | null; // String
+  }
   Mutation: {};
   Query: {};
   registerResponse: { // root type
@@ -53,8 +63,15 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  LoginResponse: { // field return type
+    email: string | null; // String
+    error: boolean; // Boolean!
+    message: string | null; // String
+    username: string | null; // String
+  }
   Mutation: { // field return type
     createAccount: NexusGenRootTypes['registerResponse'] | null; // registerResponse
+    login: NexusGenRootTypes['LoginResponse'] | null; // LoginResponse
   }
   Query: { // field return type
     test: boolean | null; // Boolean
@@ -66,8 +83,15 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  LoginResponse: { // field return type name
+    email: 'String'
+    error: 'Boolean'
+    message: 'String'
+    username: 'String'
+  }
   Mutation: { // field return type name
     createAccount: 'registerResponse'
+    login: 'LoginResponse'
   }
   Query: { // field return type name
     test: 'Boolean'
@@ -82,6 +106,9 @@ export interface NexusGenArgTypes {
   Mutation: {
     createAccount: { // args
       credentials: NexusGenInputs['registerCredentials']; // registerCredentials!
+    }
+    login: { // args
+      credentials: NexusGenInputs['loginCredentials']; // loginCredentials!
     }
   }
   Query: {

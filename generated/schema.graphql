@@ -2,12 +2,25 @@
 ### Do not make changes to this file directly
 
 
+type LoginResponse {
+  email: String
+  error: Boolean!
+  message: String
+  username: String
+}
+
 type Mutation {
   createAccount(credentials: registerCredentials!): registerResponse
+  login(credentials: loginCredentials!): LoginResponse
 }
 
 type Query {
   test(bool: Boolean!): Boolean
+}
+
+input loginCredentials {
+  email: String!
+  password: String!
 }
 
 input registerCredentials {
