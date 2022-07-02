@@ -1,5 +1,5 @@
 import type { NextComponentType } from 'next';
-import Link from 'next/link';
+import Link from 'next/Link';
 
 export const Footer: NextComponentType = () => {
   return (

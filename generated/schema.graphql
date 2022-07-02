@@ -4,8 +4,6 @@
 
 type LoginResponse {
   email: String
-  error: Boolean!
-  message: String
   username: String
 }
 
@@ -31,6 +29,5 @@ input registerCredentials {
 }
 
 type registerResponse {
-  error: Boolean!
   message: String!
 }

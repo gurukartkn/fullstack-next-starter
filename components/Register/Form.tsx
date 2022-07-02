@@ -1,9 +1,18 @@
+import { ApolloError } from '@apollo/client';
 import { useFormik } from 'formik';
 import type { NextComponentType } from 'next';
-import Link from 'next/link';
+import Link from 'next/Link';
+import { useState } from 'react';
 import * as Yup from 'yup';
+import { useRegisterAccountMutation } from '../../generated/graphql';
+import { StatusText } from './StatusText';
 
 export const RegisterForm: NextComponentType = () => {
+  const [registerMutation] = useRegisterAccountMutation({
+    notifyOnNetworkStatusChange: true,
+  });
+  const [errorMsg, setErrorMsg] = useState<string | undefined>();
+  const [statusMsg, setStatusMsg] = useState<string | undefined>();
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -12,10 +21,24 @@ export const RegisterForm: NextComponentType = () => {
       password: '',
       Vpassword: '',
     },
-    onSubmit: function (values) {
-      alert(
-        `You are registered! Name: ${values.firstName} ${values.lastName}. Email: ${values.email}. Password: ${values.password}`
-      );
+    onSubmit: async (values, actions) => {
+      const creds = { ...values };
+      actions.resetForm();
+      try {
+        const { data } = await registerMutation({
+          variables: {
+            credentials: {
+              email: creds.email,
+              firstName: creds.firstName,
+              lastName: creds.lastName,
+              password: creds.password,
+            },
+          },
+        });
+        setStatusMsg(data?.createAccount?.message);
+      } catch (error) {
+        setErrorMsg((error as ApolloError).message);
+      }
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -136,7 +159,7 @@ export const RegisterForm: NextComponentType = () => {
               >
                 Sign Up
               </button>
-              <div className="text-grey-dark mt-6">
+              <div className="text-grey-dark my-6">
                 <Link href="/login">
                   <p className="flex gap-1">
                     Already have an account?
@@ -146,6 +169,7 @@ export const RegisterForm: NextComponentType = () => {
                   </p>
                 </Link>
               </div>
+              <StatusText errorMsg={errorMsg} statusMsg={statusMsg} />
             </div>
           </div>
         </div>

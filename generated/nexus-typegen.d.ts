@@ -40,14 +40,11 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   LoginResponse: { // root type
     email?: string | null; // String
-    error: boolean; // Boolean!
-    message?: string | null; // String
     username?: string | null; // String
   }
   Mutation: {};
   Query: {};
   registerResponse: { // root type
-    error: boolean; // Boolean!
     message: string; // String!
   }
 }
@@ -65,8 +62,6 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 export interface NexusGenFieldTypes {
   LoginResponse: { // field return type
     email: string | null; // String
-    error: boolean; // Boolean!
-    message: string | null; // String
     username: string | null; // String
   }
   Mutation: { // field return type
@@ -77,7 +72,6 @@ export interface NexusGenFieldTypes {
     test: boolean | null; // Boolean
   }
   registerResponse: { // field return type
-    error: boolean; // Boolean!
     message: string; // String!
   }
 }
@@ -85,8 +79,6 @@ export interface NexusGenFieldTypes {
 export interface NexusGenFieldTypeNames {
   LoginResponse: { // field return type name
     email: 'String'
-    error: 'Boolean'
-    message: 'String'
     username: 'String'
   }
   Mutation: { // field return type name
@@ -97,7 +89,6 @@ export interface NexusGenFieldTypeNames {
     test: 'Boolean'
   }
   registerResponse: { // field return type name
-    error: 'Boolean'
     message: 'String'
   }
 }
