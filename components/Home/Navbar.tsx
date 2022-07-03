@@ -1,5 +1,4 @@
 import Link from 'next/Link';
-import Menu from './Menu';
 
 interface Props {
   loggedIn: boolean;
@@ -43,7 +42,11 @@ export const Navbar = ({ loggedIn }: Props) => {
             </div>
             {loggedIn ? (
               <div className="px-3 py-2 flex items-center gap-5">
-                <Menu />
+                <Link href="/logout">
+                  <button className="px-3 py-2 border-2 border-gray-500 text-gray-500 rounded-md">
+                    Logout
+                  </button>
+                </Link>
               </div>
             ) : (
               <div className="px-3 py-2 flex items-center gap-5">
