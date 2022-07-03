@@ -14,3 +14,10 @@ mutation Login($credentials: loginCredentials!) {
     username
   }
 }
+
+query ImplicitLogin {
+  implicitLogin {
+    loggedIn
+    email
+  }
+}

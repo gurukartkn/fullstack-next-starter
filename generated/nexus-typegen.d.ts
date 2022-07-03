@@ -44,6 +44,10 @@ export interface NexusGenObjects {
   }
   Mutation: {};
   Query: {};
+  implicitLoginResponse: { // root type
+    email?: string | null; // String
+    loggedIn: boolean; // Boolean!
+  }
   registerResponse: { // root type
     message: string; // String!
   }
@@ -69,7 +73,12 @@ export interface NexusGenFieldTypes {
     login: NexusGenRootTypes['LoginResponse'] | null; // LoginResponse
   }
   Query: { // field return type
+    implicitLogin: NexusGenRootTypes['implicitLoginResponse'] | null; // implicitLoginResponse
     test: boolean | null; // Boolean
+  }
+  implicitLoginResponse: { // field return type
+    email: string | null; // String
+    loggedIn: boolean; // Boolean!
   }
   registerResponse: { // field return type
     message: string; // String!
@@ -86,7 +95,12 @@ export interface NexusGenFieldTypeNames {
     login: 'LoginResponse'
   }
   Query: { // field return type name
+    implicitLogin: 'implicitLoginResponse'
     test: 'Boolean'
+  }
+  implicitLoginResponse: { // field return type name
+    email: 'String'
+    loggedIn: 'Boolean'
   }
   registerResponse: { // field return type name
     message: 'String'

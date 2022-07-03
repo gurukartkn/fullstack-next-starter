@@ -1,5 +1,6 @@
 import { extendType, inputObjectType, nonNull, objectType } from 'nexus';
 import { createAccount } from '../resolvers/createAccount';
+import { implicitLogin } from '../resolvers/implicitLogin';
 import { loginAttempt } from '../resolvers/loginAttempt';
 
 export const CreateAccount = extendType({
@@ -54,5 +55,23 @@ const LoginResponse = objectType({
   definition: (t) => {
     t.string('email');
     t.string('username');
+  },
+});
+
+export const ImplicitLogin = extendType({
+  type: 'Query',
+  definition: (t) => {
+    t.field('implicitLogin', {
+      type: ImplicitLoginResponse,
+      resolve: implicitLogin,
+    });
+  },
+});
+
+const ImplicitLoginResponse = objectType({
+  name: 'implicitLoginResponse',
+  definition: (t) => {
+    t.nonNull.boolean('loggedIn');
+    t.string('email');
   },
 });

@@ -13,7 +13,13 @@ type Mutation {
 }
 
 type Query {
+  implicitLogin: implicitLoginResponse
   test(bool: Boolean!): Boolean
+}
+
+type implicitLoginResponse {
+  email: String
+  loggedIn: Boolean!
 }
 
 input loginCredentials {

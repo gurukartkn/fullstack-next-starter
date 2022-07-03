@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 if (!process.env.JWT_SECRET) {
   console.warn('No JWT_SECRET environment variable set');
 }
@@ -16,5 +16,14 @@ export const createToken = (
         return resolve(encoded as string);
       }
     );
+  });
+};
+
+export const verifyToken = (token: string) => {
+  return new Promise<JwtPayload>((resolve, reject) => {
+    jwt.verify(token, process.env.JWT_SECRET as string, (err, decoded) => {
+      if (err) return reject(err);
+      return resolve(decoded as JwtPayload);
+    });
   });
 };
