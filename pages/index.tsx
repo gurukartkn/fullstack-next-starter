@@ -1,13 +1,9 @@
 import type { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import nookies from 'nookies';
-import { Feature } from '../components/Home/Feature';
 import { Footer } from '../components/Home/Footer';
 import { Hero } from '../components/Home/Hero';
 import { Navbar } from '../components/Home/Navbar';
-import { Pricing } from '../components/Home/Pricing';
-import { Statistic } from '../components/Home/Statistic';
-import { Step } from '../components/Home/Step';
 import {
   ImplicitLoginDocument,
   ImplicitLoginQuery,
@@ -32,9 +28,9 @@ const Home = ({ loggedIn, email }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
+      <Navbar loggedIn={loggedIn} email={email} />
 
-      <p>Welcome {email}</p>
+      <Hero email={email} />
 
       <Footer />
     </div>
@@ -49,17 +45,9 @@ const Home = ({ loggedIn, email }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
+      <Navbar loggedIn={loggedIn} email={email} />
 
-      <Hero />
-
-      <Statistic />
-
-      <Feature />
-
-      <Step />
-
-      <Pricing />
+      <Hero email={''} />
 
       <Footer />
     </div>

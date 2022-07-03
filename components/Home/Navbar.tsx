@@ -1,7 +1,12 @@
-import type { NextComponentType } from 'next';
 import Link from 'next/Link';
+import Menu from './Menu';
 
-export const Navbar: NextComponentType = () => {
+interface Props {
+  loggedIn: boolean;
+  email: string;
+}
+
+export const Navbar = ({ loggedIn }: Props) => {
   return (
     <div className=" sticky top-0 z-50 ">
       <nav className="bg-white shadow-md font-medium">
@@ -32,41 +37,28 @@ export const Navbar: NextComponentType = () => {
                   </svg>
                 </button>
               </Link>
-              <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
-                  <Link
-                    className="px-3 py-2 rounded-md text-sm"
-                    href="#Features"
-                  >
-                    Features
-                  </Link>
-                  <Link className="px-3 py-2 rounded-md text-sm" href="#Steps">
-                    Steps
-                  </Link>
-                  <Link
-                    className="px-3 py-2 rounded-md text-sm"
-                    href="#Pricing"
-                  >
-                    Pricing
-                  </Link>
-                </div>
-              </div>
             </div>
             <div className="block">
               <div className="ml-4 flex items-center md:ml-6"></div>
             </div>
-            <div className="px-3 py-2 flex items-center gap-5">
-              <Link href="/login">
-                <button className="px-3 py-2 text-purple-500 hover:text-purple-800">
-                  Sign in
-                </button>
-              </Link>
-              <Link href="/register">
-                <button className="px-3 py-2 border-2 border-purple-500 text-purple-500 rounded-md">
-                  Sign up
-                </button>
-              </Link>
-            </div>
+            {loggedIn ? (
+              <div className="px-3 py-2 flex items-center gap-5">
+                <Menu />
+              </div>
+            ) : (
+              <div className="px-3 py-2 flex items-center gap-5">
+                <Link href="/login">
+                  <button className="px-3 py-2 text-purple-500 hover:text-purple-800">
+                    Sign in
+                  </button>
+                </Link>
+                <Link href="/register">
+                  <button className="px-3 py-2 border-2 border-purple-500 text-purple-500 rounded-md">
+                    Sign up
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </nav>
